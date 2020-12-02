@@ -1,17 +1,20 @@
-package com.duckelekuuk.adventofcode;
+package com.duckelekuuk.adventofcode.challenges;
+
+import com.duckelekuuk.adventofcode.framework.AbstractDayChallenge;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class DayOnePartOne {
+public class DayOnePartOne extends AbstractDayChallenge {
 
     public static void main(String[] args) {
-        List<Integer> allNumbers = getInput("input.txt");
+        Set<Integer> allNumbers = getInput("day-1-input.txt");
 
         Logger logger = Logger.getLogger(DayOnePartOne.class.getSimpleName());
 
@@ -26,7 +29,7 @@ public class DayOnePartOne {
         logger.log(Level.INFO, "Result: {0}", result);
     }
 
-    public static List<Integer> getInput(String resourceName) {
+    public static Set<Integer> getInput(String resourceName) {
         InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(resourceName);
         if (inputStream == null) {
             throw new IllegalArgumentException("Resource not found");
@@ -34,6 +37,6 @@ public class DayOnePartOne {
 
         BufferedReader reader = new BufferedReader(new BufferedReader(new InputStreamReader(inputStream)));
 
-        return reader.lines().map(Integer::parseInt).collect(Collectors.toList());
+        return reader.lines().map(Integer::parseInt).collect(Collectors.toSet());
     }
 }

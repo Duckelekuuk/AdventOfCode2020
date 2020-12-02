@@ -1,7 +1,8 @@
-package com.duckelekuuk.adventofcode;
+package com.duckelekuuk.adventofcode.challenges;
+
+import com.duckelekuuk.adventofcode.framework.AbstractDayChallenge;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -9,10 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class DayOnePartTwo {
+public class DayOnePartTwo extends AbstractDayChallenge {
 
     public static void main(String[] args) {
-        List<Integer> sortedNumbers = getInput("input.txt").stream().sorted().collect(Collectors.toList());
+        List<Integer> sortedNumbers = getInput("day-1-input.txt").stream().sorted().collect(Collectors.toList());
 
         Logger logger = Logger.getLogger(DayOnePartOne.class.getSimpleName());
 
