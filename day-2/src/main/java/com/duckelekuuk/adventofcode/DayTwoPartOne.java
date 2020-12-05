@@ -7,9 +7,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class DayTwoPartOne {
+
+    private static final Pattern INPUT_PATTERN = Pattern.compile("([^>]+)-([^>]+) ([^>]+): ([^>]+)");
 
     public static void main(String[] args) {
         Stream<String> input = getInput("input.txt");
@@ -24,16 +28,14 @@ public class DayTwoPartOne {
     }
 
     private static boolean validatePassword(String input) {
-        String[] split = input.split(":");
-        String pattern = split[0];
-        String password = split[1];
+        Matcher matcher = INPUT_PATTERN.matcher(input);
 
-        String[] patternSplit = pattern.split(" ");
+        if (!matcher.find()) return false;
 
-        int min = Integer.parseInt(patternSplit[0].split("-")[0]);
-        int max = Integer.parseInt(patternSplit[0].split("-")[1]);
-        String character = patternSplit[1];
-        int count = StringUtils.countMatches(password.trim(), character);
+        int min = Integer.parseInt(matcher.group(1));
+        int max = Integer.parseInt(matcher.group(2)) ;
+        String character = matcher.group(3) ;
+        int count = StringUtils.countMatches(matcher.group(4), character);
 
         return count >= min && count <= max;
     }
